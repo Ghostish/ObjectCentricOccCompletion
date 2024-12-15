@@ -49,6 +49,7 @@ python tools/occ/visualizae_occ.py --occ-file {PATH_TO_NPZ}
 
 A mayavi window will show up when running this command. <code style="color : red">Red voxels</code> are unknown, <code style="color : green">green voxels</code> are occupied and <code style="color : blue">blue voxels</code> are free.
 You can use the UI to hide/show components.  
+
 <p float="left">
   <img src="./figures/mayavi_vis.png" width="100" />
   <img src="./figures/mayavi_vis_unknown.png" width="100" /> 
