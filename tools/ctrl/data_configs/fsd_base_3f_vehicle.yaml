@@ -1,0 +1,22 @@
+# modified from old file "fsd_pastfuture_vehicle"
+
+# detection result in waymo bin format
+bin_path: /220019043/codes/ImmortalTracker-for-CTRL/mot_results/waymo/training/immortal_fsd3f/bin/vehicle/pred.bin
+val_bin_path: /220019043/codes/ImmortalTracker-for-CTRL/mot_results/waymo/validation/immortal_fsd3f/bin/vehicle/pred.bin
+data_root: /LiZhen_team/dataset/waymo/tracklet_data
+exist_ok: False
+# change the split for your need
+#split: training
+split: val
+# split: test
+type: [1,] # 1:vehicle 2:pedestrian 4: cyclist
+
+box:
+  extra_width: 1
+
+selection:
+  mode: random
+  size: 1.0
+
+candidate:
+  affinity_thresh: 0.5

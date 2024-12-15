@@ -1,0 +1,9 @@
+{
+    "exclude": [
+        "build/",
+        ".git/",
+        "data/",
+        "work_dirs/"
+    ],
+    
+}
