@@ -47,7 +47,11 @@ After finishing the annotation, you can use the following command for visualizat
 python tools/occ/visualizae_occ.py --occ-file {PATH_TO_NPZ}
 ``` 
 
-A mayavi window will show up when running this command. <code style="color : red">Red voxels</code> are unknown, <code style="color : green">green voxels</code> are occupied and <code style="color : blue">blue voxels</code> are free.
+A mayavi window will show up when running this command. 
+- ![#f03c15](https://placehold.co/15x15/f03c15/f03c15.png) Red voxels are unknown.
+- ![#c5f015](https://placehold.co/15x15/c5f015/c5f015.png) green voxels are occupied.
+- ![#1589F0](https://placehold.co/15x15/1589F0/1589F0.png) blue voxels are free.
+
 You can use the UI to hide/show components.  
 
 <p float="left">
