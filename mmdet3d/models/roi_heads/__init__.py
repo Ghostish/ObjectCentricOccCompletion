@@ -7,6 +7,7 @@ from .roi_extractors import Single3DRoIAwareExtractor, SingleRoIExtractor
 from .fsd_roi_head import GroupCorrectionHead
 from .incremental_roi_head import IncrementalROIHead
 from .tracklet_roi_head import TrackletRoIHead
+from .tracklet_roi_head_occ import TrackletRoIHeadOCC
 
 __all__ = [
     "Base3DRoIHead",

@@ -516,7 +516,7 @@ class WaymoTrackletDatasetWithOcc(WaymoTrackletDataset):
             pipeline,
             classes,
             box_type_3d,
-            test_mode,
+            False,
             load_interval,
             min_tracklet_points,
         )
@@ -524,10 +524,9 @@ class WaymoTrackletDatasetWithOcc(WaymoTrackletDataset):
         if min_tracklet_length > 0:
             self.filter_tracklets_by_length()
  
-        self.filter_tracklets_by_box_length()
+        # self.filter_tracklets_by_box_length()
         self.gt_anno_occ = True
-        if not test_mode:
-            self.occ_anno_root = occ_anno_root
+        self.occ_anno_root = occ_anno_root
     
         if not self.test_mode:
             self._set_group_flag()
@@ -551,13 +550,12 @@ class WaymoTrackletDatasetWithOcc(WaymoTrackletDataset):
         input_dict = super().get_data_info(index)
         # if '10203656353524179475_7625_000_7645_000--1_6' in input_dict['pts_filename']:
         #     print("attention+++++++++++++++++++++++++++++++++",index)
-        if not self.test_mode:
-            trk_anno_info = input_dict["ann_info"]
-            occ_anno_info = [
-                self.parse_occ_anno(trk)
-                for trk in trk_anno_info
-            ]
-            input_dict["occ_infos"] = occ_anno_info
+        trk_anno_info = input_dict["ann_info"]
+        occ_anno_info = [
+            self.parse_occ_anno(trk)
+            for trk in trk_anno_info
+        ]
+        input_dict["occ_infos"] = occ_anno_info
         return input_dict
 
     def parse_occ_anno(self, trk):
@@ -616,6 +614,18 @@ class WaymoTrackletDatasetWithOcc(WaymoTrackletDataset):
         Returns:
             dict[str: float]: results of each evaluation metric
         """
+        if 'waymo' in metric:
+            tracklet_results = [r['out_tracklets'][0] for r in results]
+            super().evaluate(
+                tracklet_results,
+                'waymo',
+                logger,
+                pklfile_prefix,
+                submission_prefix,
+                show,
+                out_dir,
+                pipeline,
+            )
         if 'iou' in metric:
             total_inter = 0.0
             total_union = 0.0
@@ -662,18 +672,7 @@ class WaymoTrackletDatasetWithOcc(WaymoTrackletDataset):
                 print(f"medium box iou: {sum(medium_box_iou_list) / len(medium_box_iou_list)}")
             if len(large_box_iou_list) > 0:
                 print(f"large box iou: {sum(large_box_iou_list) / len(large_box_iou_list)}")
-        elif 'waymo' in metric:
-            super().evaluate(
-                results,
-                metric,
-                logger,
-                pklfile_prefix,
-                submission_prefix,
-                show,
-                out_dir,
-                pipeline,
-            )
-        else:
-            raise NotImplementedError
+
+
 
 

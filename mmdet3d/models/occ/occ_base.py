@@ -11,7 +11,6 @@ from mmdet3d.core.bbox.structures import (
     xywhr2xyxyr,
 )
 from mmdet3d.models.builder import build_loss, build_roi_extractor
-from mmdet3d.models.roi_heads.bbox_heads.fsd_bbox_head import FullySparseBboxOccHead
 from mmdet3d.ops import scatter_v2, build_mlp
 from mmdet3d.ops.iou3d.iou3d_utils import nms_gpu, nms_normal_gpu
 from mmdet.core import build_bbox_coder, multi_apply, reduce_mean
